@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script src="cytoscape.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="dagre.js"></script>
+<script src="cytoscape-dagre.js"></script>
+	<style>
+		body { 
+		  font: 14px helvetica neue, helvetica, arial, sans-serif;
+		}
+
+		#cy {
+		  height: 100%;
+		  width: 100%;
+		  position: absolute;
+		  left: 0;
+		  top: 0;
+		}
+	  
+	</style>	
+	
+
+<script>
+      window.addEventListener('DOMContentLoaded', function(){
+
+        var cy = window.cy = cytoscape({
+          container: document.getElementById('cy'),
+
+          boxSelectionEnabled: false,
+          autounselectify: true,
+
+          layout: {
+            name: 'dagre',
+			spacingFactor: 1,
+			nodeSep: 140
+          },
+
+          style: [
+            {
+              selector: 'node',
+              style: {
+                'background-color': '#609CE1',
+				'content': 'data(lbl)',
+				'shape': 'roundrectangle',
+				'font-size': 10,
+				'text-valign': 'center',
+				'border-color': '#fff',
+				'width': 'data(lblSize)'
+              }
+            },
+
+            {
+              selector: 'edge',
+              style: {
+                'width': 'data(weight)',
+                'target-arrow-shape': 'triangle',
+                'line-color': '#CCE4FF',
+                'target-arrow-color': '#CCE4FF',
+                'curve-style': 'bezier'
+              }
+            }
+          ],
+
+          elements: {
+            nodes: [
+              { data: { id: 'n4', thresh: '1', lbl: 'Root', lblSize : 4*10 } },
+              { data: { id: 'n5', thresh: '1', lbl: 'næstedwvsdvs', lblSize : 10*10 } },
+              { data: { id: 'n6', thresh: '1', lbl: 'næsteny', lblSize : 5*10  } },
+              { data: { id: 'n7', thresh: '1', lbl: 'næste', lblSize : 5*10  } },
+              { data: { id: 'n8', thresh: '1', lbl: 'næste', lblSize : 5*10  } },
+              { data: { id: 'n9', thresh: '1', lbl: 'næste', lblSize : 5*10  } },
+              { data: { id: 'n10', thresh: '1', lbl: 'næste', lblSize : 5*10  } }
+            ],
+            edges: [
+              { data: { source: 'n4', target: 'n5', weight: 3 } },
+              { data: { source: 'n4', target: 'n6', weight: 3 } },
+              { data: { source: 'n6', target: 'n7', weight: 3 } },
+              { data: { source: 'n6', target: 'n8', weight: 3 } },
+              { data: { source: 'n8', target: 'n9', weight: 3 } },
+              { data: { source: 'n8', target: 'n10', weight: 3 } }
+            ]
+          }
+        });
+      });
+	  
+</script>	
+	
+
+</head>
+<body>
+  <div id="cy"></div>
+  
+ <script>
+ 
+</script>	
+</body>
+
+
